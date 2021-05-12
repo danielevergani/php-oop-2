@@ -1,39 +1,17 @@
 <?php
 
-error_reporting(E_ALL & E_STRICT);
-ini_set('display_errors', '1');
-ini_set('log_errors', '0');
-ini_set('error_log', './');
+include __DIR__."/oggetti/prodotti.php";
 
-class Prodotto {
 
-    protected $nomeArticolo;
-    protected $prezzo;
-    protected $immagineProdotto;
+$playstation = new Prodotti("play", 450, "https://cdn.idealo.com/folder/Product/200584/7/200584783/s10_produktbild_gross/sony-playstation-5-ps5.jpg");
+$test = new Categoria("test1", 34, "test2", "test3");
 
-    // costruttore
-    public function __construct($_nomeArticolo, $_prezzo, $_immagineProdotto = "https://lh3.googleusercontent.com/proxy/R0O4NMv7ecZe-n7M2OCiUZuJfPji1HXcrgL50BQ3VuWkaYNZJnkb7qMnP9Frq7FT3RAc4PfXCWKI9nCJjajvLk0FRGXnhDo9nWjyjYJ1ucu-4rLV4BW9Qv7BRnpYtnE2sbthgfgXmXt64yw66dM")
-    {
-        $this->nomeArticolo = $_nomeArticolo;
-        $this->prezzo = $_prezzo;
-        $this->immagineProdotto = $_immagineProdotto;
-    }
+var_dump($test);
 
-    // metodi
-    public function getName(){
-        return $this -> nomeArticolo;
-    }
-    public function getPrezzo(){
-        return $this -> prezzo;
-    }
-    public function getImg(){
-        return $this -> immagineProdotto;
-    }
-
-}
-
-$playstation = new Prodotto("play", 450);
-
+$listaArticoli = [
+    $playstation,
+    $tagliaerba
+];
 ?>
 
 <!DOCTYPE html>
@@ -45,12 +23,16 @@ $playstation = new Prodotto("play", 450);
         <title>Document</title>
     </head>
     <body>
-        <img src="<?php echo $playstation -> getImg(); ?>" alt="">
-        <ul>
-            <li><?php echo $playstation -> getName(); ?></li>
-            <li><?php echo $playstation -> getPrezzo()."€"; ?></li>
-        </ul>
-        
+        <?php foreach($listaArticoli as $item) { ?>
+            <div class="prodotto">
+            <img src="<?php echo $item -> getImg(); ?>" alt="">
+            <ul>
+                <li><?php echo $item -> getName(); ?></li>
+                <li><?php echo $item -> getPrezzo()."€"; ?></li>
+                
+            </ul>
+            </div>
+        <?php } ?>
         
     </body>
 </html>
