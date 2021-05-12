@@ -4,13 +4,11 @@ include __DIR__."/oggetti/prodotti.php";
 
 
 $playstation = new Prodotti("play", 450, "https://cdn.idealo.com/folder/Product/200584/7/200584783/s10_produktbild_gross/sony-playstation-5-ps5.jpg");
-$test = new Categoria("test1", 34, "test2", "test3");
-
-var_dump($test);
+$playstationCat = new Categoria("play", 450, "https://cdn.idealo.com/folder/Product/200584/7/200584783/s10_produktbild_gross/sony-playstation-5-ps5.jpg", "teck");
 
 $listaArticoli = [
     $playstation,
-    $tagliaerba
+    $playstationCat
 ];
 ?>
 
@@ -29,7 +27,9 @@ $listaArticoli = [
             <ul>
                 <li><?php echo $item -> getName(); ?></li>
                 <li><?php echo $item -> getPrezzo()."€"; ?></li>
-                
+                <?php if (property_exists($item, "categoria")) { ?>
+                    <li><?php echo $item -> categoria; ?></li>
+                <?php } ?>
             </ul>
             </div>
         <?php } ?>

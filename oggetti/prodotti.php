@@ -29,7 +29,7 @@ class Prodotti {
 
 class Categoria extends Prodotti{
     
-    protected $categoria;
+    public $categoria;
 
     // costruttore
     public function __construct($_nomeArticolo, $_prezzo, $_immagineProdotto, $_categoria)
@@ -39,7 +39,4 @@ class Categoria extends Prodotti{
     }
 
     // metodi
-    public function getCategoria(){
-        return $this -> categoria;
-    }
 }
